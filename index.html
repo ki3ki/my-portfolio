@@ -477,8 +477,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- contact -->
 		<section class="contact" id="contact">
 			<div class="inner-sec">
-				<h3 class="heading text-capitalize mb-4">Get In Touch <span></span></h3>
-				<form name="contact-form" class="contact-form" method="post" action="#" id="contact-form">
+				<h3 class="heading text-capitalize mb-4">📧 Get In Touch <span></span></h3>
+				<form name="contact-form" class="contact-form" method="POST" action="https://formspree.io/f/xldjlajl" id="contact-form">
 					<div class="row">
 						<div class="col-md-6 con-gd">
 							<div class="form-group">
@@ -574,6 +574,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			duration: 1000,
 		});
 	</script>
+	<script>
+		window.addEventListener("DOMContentLoaded", function () {
+			const form = document.getElementById("contact-form");
+			form.addEventListener("submit", async function (event) {
+				event.preventDefault();
+				const formData = new FormData(form);
+				const response = await fetch(form.action, {
+					method: "POST",
+					body: formData,
+					headers: { 'Accept': 'application/json' }
+				});
+	
+				if (response.ok) {
+					alert("✅ Your message has been sent successfully!");
+					form.reset();
+				} else {
+					alert("⚠️ Oops! Something went wrong. Please try again later.");
+				}
+			});
+		});
+	</script>
+	
 
 </body> 
 </html>
